@@ -27,7 +27,15 @@
 			구체적인 URL 패턴을 먼저 설정하는 순서로 설정해야함.
 		-->
 		<intercept-url pattern="/**/admin/**" access="ROLE_ADMIN"/>
+		<intercept-url pattern="/main.do" access="ROLE_ANONYMOUS"/>
 		<intercept-url pattern="/**" access="ROLE_USER"/>
+		<form-login
+			username-parameter="loginid"
+			password-parameter="loginpw"
+			login-page="/login.do"
+			default-target-url="/main.do"
+			authentication-failure-url="/login.do?fail=true"
+		/>
 	</http>
 	
 	<authentication-manager>

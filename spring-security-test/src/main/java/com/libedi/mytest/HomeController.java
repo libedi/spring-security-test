@@ -36,4 +36,9 @@ public class HomeController {
 		return "home";
 	}
 	
+	@RequestMapping(value="/main")
+	public String main(Model model){
+		return "main";
+	}
+	
 }
