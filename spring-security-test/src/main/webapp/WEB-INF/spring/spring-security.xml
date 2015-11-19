@@ -43,6 +43,10 @@
 			default-target-url="/main.do"
 			authentication-failure-url="/login.do?fail=true"
 		/>
+		<logout
+			logout-success-url="/main.do"
+			delete-cookies="JSESSIONID"
+		/>
 	</http>
 	
 	<authentication-manager>
