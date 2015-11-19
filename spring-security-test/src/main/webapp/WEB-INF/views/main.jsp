@@ -7,7 +7,7 @@
 <title>메인화면</title>
 </head>
 <body>
-	<form id="loginfrm" name="loginfrm" method="post" action="/j_spring_security">
+	<form id="loginfrm" name="loginfrm" method="post" action="/j_spring_security_check">
 		<table>
 			<tr>
 				<td>ID</td>

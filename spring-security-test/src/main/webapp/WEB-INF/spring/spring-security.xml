@@ -21,14 +21,21 @@
 			<logout>
 		</http> 
 	 -->
-	<http auto-config="true">
+	<http auto-config="true" use-expressions="true">
 		<!-- 
-			intercept-url 은 권한 설정
+			intercept-url 은 권한 설정.
 			구체적인 URL 패턴을 먼저 설정하는 순서로 설정해야함.
 		-->
-		<intercept-url pattern="/**/admin/**" access="ROLE_ADMIN"/>
-		<intercept-url pattern="/main.do" access="ROLE_ANONYMOUS"/>
-		<intercept-url pattern="/**" access="ROLE_USER"/>
+<!-- 		<intercept-url pattern="/admin/**" access="ROLE_ADMIN"/> -->
+<!-- 		<intercept-url pattern="/login.do" access="ROLE_ANONYMOUS"/> -->
+<!-- 		<intercept-url pattern="/main.do" access="ROLE_ANONYMOUS,ROLE_USER,ROLE_ADMIN"/> -->
+<!-- 		<intercept-url pattern="/**" access="ROLE_ANONYMOUS,ROLE_USER,ROLE_ADMIN"/> -->
+
+		<!-- 일일이 권한을 적어줄 수 없으니까, use-expressions="true" 로 아래 SPRING EL을 사용한다. -->
+		<intercept-url pattern="/admin/**" access="hasRole('ROLE_ADMIN')"/>
+		<intercept-url pattern="/login.do" access="isAnonymous()"/>
+		<intercept-url pattern="/main.do" access="permitAll"/>
+		<intercept-url pattern="/**" access="permitAll"/>
 		<form-login
 			username-parameter="loginid"
 			password-parameter="loginpw"
