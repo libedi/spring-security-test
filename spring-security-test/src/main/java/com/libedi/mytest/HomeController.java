@@ -9,7 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.libedi.mytest.dao.MemberInfo;
+import com.libedi.mytest.vo.MemberInfo;
 
 /**
  * Handles requests for the application home page.

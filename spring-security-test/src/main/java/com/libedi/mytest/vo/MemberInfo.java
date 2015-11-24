@@ -1,4 +1,4 @@
-package com.libedi.mytest.dao;
+package com.libedi.mytest.vo;
 
 import java.io.Serializable;
 import java.util.Collection;
@@ -50,8 +50,8 @@ public class MemberInfo implements UserDetails {
 		this.password = password;
 	}
 
-	public void setAuthorities(Set<GrantedAuthority> authorities) {
-		this.authorities = authorities;
+	public void setAuthorities(Collection<? extends GrantedAuthority> authorities) {
+		this.authorities = Collections.unmodifiableSet(sortAuthorities(authorities));
 	}
 
 	@Override
