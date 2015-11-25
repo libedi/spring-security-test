@@ -41,6 +41,7 @@
 			</tr>
 			</c:if>
 		</table>
+		<input type="hidden" name="loginRedirect" value="${loginRedirect }"/>
 	</form>
 </body>
 <script type="text/javascript">

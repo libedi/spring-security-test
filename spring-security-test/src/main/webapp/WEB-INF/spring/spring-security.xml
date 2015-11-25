@@ -42,6 +42,7 @@
 			login-page="/login.do"
 			default-target-url="/main.do"
 			authentication-failure-url="/login.do?fail=true"
+			authentication-success-handler-ref="customAuthenticationSuccessHandler"
 		/>
 		<logout
 			logout-success-url="/main.do"
@@ -65,6 +66,12 @@
 		<beans:property name="usersByUsernameQuery" value="SELECT ID, PASSWORD, NAME FROM MEMBERINFO WHERE ID=?"/>
 		<beans:property name="authoritiesByUsernameQuery" value="SELECT ID FROM MEMBER_AUTHORITY WHERE ID=?"/>
 		<beans:property name="enableGroups" value="false"/>
+	</beans:bean>
+	
+	<beans:bean id="customAuthenticationSuccessHandler" class="com.libedi.mytest.security.handler.CustomAuthenticationSuccessHandler">
+		<beans:property name="targetUrlParameter" value="loginRedirect"/>
+		<beans:property name="defaultUrl" value="/main.do"/>
+		<beans:property name="useReferer" value="false"/>
 	</beans:bean>
 	
 </beans:beans>
