@@ -60,10 +60,10 @@
 	</authentication-manager>
 	
 	<beans:bean id="customJdbcDaoImpl" class="com.libedi.mytest.jdbc.dao.CustomJdbcDaoImpl">
-		<beans:property name="dataSource" ref="logDataSource_pos"/>
+		<beans:property name="dataSource" ref="dataSource"/>
 		<beans:property name="rolePrefix" value=""/>
 		<beans:property name="usersByUsernameQuery" value="SELECT ID, PASSWORD, NAME FROM MEMBERINFO WHERE ID=?"/>
-		<beans:property name="authoritiesByUsernameQuery" value="SELECT ROLE_ID FROM MEMBER_ROLE WHERE ID=?"/>
+		<beans:property name="authoritiesByUsernameQuery" value="SELECT ID FROM MEMBER_AUTHORITY WHERE ID=?"/>
 		<beans:property name="enableGroups" value="false"/>
 	</beans:bean>
 	
