@@ -36,13 +36,21 @@
 		<intercept-url pattern="/login.do" access="isAnonymous()"/>
 		<intercept-url pattern="/main.do" access="permitAll"/>
 		<intercept-url pattern="/**" access="permitAll"/>
+<!-- 		<form-login -->
+<!-- 			username-parameter="loginid" -->
+<!-- 			password-parameter="loginpw" -->
+<!-- 			login-page="/login.do" -->
+<!-- 			default-target-url="/main.do" -->
+<!-- 			authentication-failure-url="/login.do?fail=true" -->
+<!-- 			authentication-success-handler-ref="customAuthenticationSuccessHandler" -->
+<!-- 		/> -->
 		<form-login
 			username-parameter="loginid"
 			password-parameter="loginpw"
 			login-page="/login.do"
 			default-target-url="/main.do"
-			authentication-failure-url="/login.do?fail=true"
 			authentication-success-handler-ref="customAuthenticationSuccessHandler"
+			authentication-failure-handler-ref="customAuthenticationFailureHandler"
 		/>
 		<logout
 			logout-success-url="/main.do"
@@ -72,6 +80,14 @@
 		<beans:property name="targetUrlParameter" value="loginRedirect"/>
 		<beans:property name="defaultUrl" value="/main.do"/>
 		<beans:property name="useReferer" value="false"/>
+	</beans:bean>
+	
+	<beans:bean id="customAuthenticationFailureHandler" class="com.libedi.mytest.security.handler.CustomAuthenticationFailureHandler">
+		<beans:property name="loginIdName" value="loginid"/>
+		<beans:property name="loginPasswordName" value="loginpw"/>
+		<beans:property name="loginRedirectName" value="loginRedirect"/>
+		<beans:property name="exceptionMsgName" value="securityExceptionMsg"/>
+		<beans:property name="defaultFailureUrl" value="/login.do?fail=true"/>
 	</beans:bean>
 	
 </beans:beans>

@@ -13,13 +13,13 @@
 			<tr>
 				<td>ID</td>
 				<td>
-					<input type="text" id="loginid" name="loginid" />
+					<input type="text" id="loginid" name="loginid" value="${loginid}"/>
 				</td>
 			</tr>
 			<tr>
 				<td>PASSWORD</td>
 				<td>
-					<input type="password" id="loginpw" name="loginpw" />
+					<input type="password" id="loginpw" name="loginpw" value="${loginpw}" />
 				</td>
 			</tr>
 			<tr>
@@ -27,16 +27,17 @@
 					<input type="submit" id="loginbtn" value="로그인"/>
 				</td>
 			</tr>
-			<c:if test="${not empty param.fail}">
+			<c:if test="${not empty securityExceptionMsg}">
 			<tr>
 				<td colspan="2">
 					<p><font color="red">로그인 실패, 한번더해봐</font></p>
-					<p><font color="red">이유 : ${sessionScope["SPRING_SECURITY_LAST_EXCEPTION"].message}</font></p>
-					<c:remove var="SPRING_SECURITY_LAST_EXCEPTION" scope="session"/>
+<%-- 					<p><font color="red">이유 : ${sessionScope["SPRING_SECURITY_LAST_EXCEPTION"].message}</font></p> --%>
+<%-- 					<c:remove var="SPRING_SECURITY_LAST_EXCEPTION" scope="session"/> --%>
 					<%-- 
 						Spring Security 작업중 예외발생시, 예외에 대한 객체를 만든 뒤 세션에 저장.
 						저장된 key 가 SPRING_SECURITY_LAST_EXCEPTION
 					--%>
+					<p><font color="red">${securityExceptionMsg}</font></p>
 				</td>
 			</tr>
 			</c:if>

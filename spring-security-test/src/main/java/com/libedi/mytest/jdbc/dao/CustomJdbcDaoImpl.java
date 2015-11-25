@@ -33,6 +33,7 @@ public class CustomJdbcDaoImpl extends JdbcDaoImpl {
 		
 		if(users.size() == 0){
 			logger.debug("Query returned no results for user '" + username + "'");
+			logger.debug(messages.getMessage("JdbcDaoImpl.notFound", new Object[]{username}, "Username {0} not found"));
 			throw new UsernameNotFoundException(messages.getMessage("JdbcDaoImpl.notFound", new Object[]{username}, "Username {0} not found"));
 		}
 		
