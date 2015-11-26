@@ -65,7 +65,13 @@
 <!-- 				<user name="admin1" password="admin1password" authorities="ROLE_ADMIN"/> -->
 <!-- 			</user-service> -->
 <!-- 		</authentication-provider> -->
-		<authentication-provider user-service-ref="customJdbcDaoImpl"/>
+		<authentication-provider user-service-ref="customJdbcDaoImpl">
+			<!--
+				내부적으로 호출되는 DaoAuthenticationProvider 에 passwordEncoder 변수에 할당
+				새로운 암호화를 사용할 시 PasswordEncoder 인터페이스를 구현하여 encode(), match() 메서드를 구현하면 됨
+			-->
+			<password-encoder ref="bcryptPasswordEncoder"/>
+		</authentication-provider>
 	</authentication-manager>
 	
 	<beans:bean id="customJdbcDaoImpl" class="com.libedi.mytest.jdbc.dao.CustomJdbcDaoImpl">
@@ -89,6 +95,8 @@
 		<beans:property name="exceptionMsgName" value="securityExceptionMsg"/>
 		<beans:property name="defaultFailureUrl" value="/login.do?fail=true"/>
 	</beans:bean>
+	
+	<beans:bean id="bcryptPasswordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"/>
 	
 </beans:beans>
 
